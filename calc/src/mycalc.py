@@ -6,14 +6,19 @@ def application(environ, start_response):
 	a = d.get('a', [''])[0]
 	b = d.get('b', [''])[0]
 
-
-	if '' not in [a,b]:
+	
+	if environ['QUERY_STRING'] == '':
+		response_body = mt.htmlEmpty()
+	elif ''  in [a,b]:
+		if a == '' and b == "":
+			response_body = mt.htmlAlert("Please enter number.")
+		else:
+			response_body = mt.htmlAlert("Please enter number correctly.")
+	else:
 		a, b = int(a), int(b)
 		sum = a + b
 		product = a * b
-		response_body = html(sum = sum, product = product) 
-	else:
-		response_body = html(sum = 0, product = 0)
+		response_body = mt.htmlResult(sum = sum, product = product) 
 
 	start_response('200 OK', [
 		('Content-Type', 'text/html'),
