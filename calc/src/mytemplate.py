@@ -6,7 +6,7 @@ def htmlEmpty():
 	return front + back
 
 
-def htmlAlert(str alertMessage):
+def htmlAlert(alertMessage):
 	return front + '<script> alert("' + alertMessage + '")</script>'
 
 
