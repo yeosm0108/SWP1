@@ -15,10 +15,13 @@ def application(environ, start_response):
 		else:
 			response_body = mt.htmlAlert("Please enter number correctly.")
 	else:
-		a, b = int(a), int(b)
-		sum = a + b
-		product = a * b
-		response_body = mt.htmlResult(sum = sum, product = product) 
+		if not a.isdigit() or not b.isdigit():
+			response_body = mt.htmlAlert("Please enter digits.")
+		else:
+			a, b = int(a), int(b)
+			sum = a + b
+			product = a * b
+			response_body = mt.htmlResult(sum = sum, product = product) 
 
 	start_response('200 OK', [
 		('Content-Type', 'text/html'),
