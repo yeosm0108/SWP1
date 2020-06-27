@@ -11,17 +11,15 @@ def application(environ, start_response):
 		response_body = mt.htmlEmpty()
 	elif ''  in [a,b]:
 		if a == '' and b == "":
-			response_body = mt.htmlAlert("Please enter number.")
+			response_body = mt.htmlAlert("Please enter your values.")
 		else:
-			response_body = mt.htmlAlert("Please enter number correctly.")
+			response_body = mt.htmlAlert("Please enter both of your values.")
 	else:
 		if not a.isdigit() or not b.isdigit():
-			response_body = mt.htmlAlert("Please enter digits.")
+			response_body = mt.htmlAlert("Please enter digits only.")
 		else:
 			a, b = int(a), int(b)
-			sum = a + b
-			product = a * b
-			response_body = mt.htmlResult(sum = sum, product = product) 
+			response_body = mt.htmlResult(sum = a + b, product = a * b) 
 
 	start_response('200 OK', [
 		('Content-Type', 'text/html'),
