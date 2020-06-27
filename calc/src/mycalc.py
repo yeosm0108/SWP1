@@ -1,5 +1,5 @@
 from cgi import parse_qs
-from mytemplate import html
+import mytemplate as mt
 
 def application(environ, start_response):
 	d = parse_qs(environ['QUERY_STRING'])
